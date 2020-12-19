@@ -3,14 +3,8 @@ package com.rupindr.javaredux;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
-@FunctionalInterface
-interface Subscriber<T, U> {
-    void apply(T t, U u);
-}
-
-public class ReducerBase<T extends State> {
+class ReducerBase<T extends State> {
 
     public String name;
     public Reducer<T> reducer;

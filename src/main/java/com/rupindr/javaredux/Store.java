@@ -3,7 +3,6 @@ package com.rupindr.javaredux;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class Store<T extends State> {
 
@@ -31,7 +30,7 @@ public class Store<T extends State> {
             T newState = reducerEntry.getValue().reducer.reduce(action, reducerEntry.getValue().state);
             boolean isChanged = (currState != null && currState.compareTo(newState) != 0) || (currState == null && newState != null);
             reducerEntry.getValue().state = newState;
-            if(isChanged) reducerEntry.getValue().execSubscribers(currState);
+            if (isChanged) reducerEntry.getValue().execSubscribers(currState);
         }
     }
 
