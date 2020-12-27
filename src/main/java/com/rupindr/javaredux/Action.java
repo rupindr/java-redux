@@ -1,7 +1,7 @@
 package com.rupindr.javaredux;
 
 /**
- * @param <T>
+ * @param <T> type of payload
  */
 public class Action<T> {
 
@@ -9,8 +9,8 @@ public class Action<T> {
     private final T payload;
 
     /**
-     * @param type
-     * @param payload
+     * @param type action type
+     * @param payload payload
      */
     public Action(String type, T payload) {
         this.type = type;
@@ -18,14 +18,14 @@ public class Action<T> {
     }
 
     /**
-     * @return
+     * @return type
      */
     public String getType() {
         return type;
     }
 
     /**
-     * @return
+     * @return payload
      */
     public T getPayload() {
         return payload;

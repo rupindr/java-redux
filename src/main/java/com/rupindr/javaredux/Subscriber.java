@@ -1,8 +1,8 @@
 package com.rupindr.javaredux;
 
 /**
- * @param <T>
- * @param <U>
+ * @param <T> type of first parameter
+ * @param <U> type of second parameter
  */
 @FunctionalInterface
 public interface Subscriber<T, U> {

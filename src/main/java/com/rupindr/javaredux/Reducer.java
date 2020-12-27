@@ -1,14 +1,14 @@
 package com.rupindr.javaredux;
 
 /**
- * @param <T>
+ * @param <T> type of custom state
  */
 public interface Reducer<T extends State> {
 
     /**
-     * @param action
-     * @param currentState
-     * @return
+     * @param action action object
+     * @param currentState current state
+     * @return state object
      */
     T reduce(Action<?> action, T currentState);
 

@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 /**
- * @param <T>
+ * @param <T> custom state class
  */
 public class Store<T extends State> {
 
@@ -16,31 +16,31 @@ public class Store<T extends State> {
     }
 
     /**
-     * @return
+     * @return current state
      */
     public Map<String, T> getState() {
         return reducers.entrySet().stream().collect(HashMap::new, (m, v) -> m.put(v.getKey(), v.getValue().state), HashMap::putAll);
     }
 
     /**
-     * @param name
-     * @param reducer
-     * @param initState
+     * @param name reducer name
+     * @param reducer reducer object
+     * @param initState initial state
      */
     public void registerReducer(String name, Reducer<T> reducer, T initState) {
         reducers.put(name, new ReducerBase<>(name, reducer, initState));
     }
 
     /**
-     * @param name
-     * @param reducer
+     * @param name reducer name
+     * @param reducer reducer object
      */
     public void registerReducer(String name, Reducer<T> reducer) {
         registerReducer(name, reducer, null);
     }
 
     /**
-     * @param action
+     * @param action action object
      */
     public void dispatch(Action<?> action) {
         for (Map.Entry<String, ReducerBase<T>> reducerEntry : reducers.entrySet()) {
@@ -54,8 +54,8 @@ public class Store<T extends State> {
     }
 
     /**
-     * @param name
-     * @param fn
+     * @param name reducer name
+     * @param fn subscriber
      */
     public void subscribe(String name, Subscriber<T, T> fn) {
         if (!reducers.containsKey(name)) {
@@ -65,8 +65,8 @@ public class Store<T extends State> {
     }
 
     /**
-     * @param name
-     * @param fn
+     * @param name reducer name
+     * @param fn subscriber
      */
     public void subscribe(String name, Consumer<T> fn) {
         if (!reducers.containsKey(name)) {
